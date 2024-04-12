@@ -1,11 +1,13 @@
 FROM alpine
 
-LABEL "repository"="http://github.com/khulnasoft-lab/action-setup"
-LABEL "homepage"="http://github.com/khulnasoft-lab/action-setup"
-LABEL "maintainer"="KhulnaSoft DevOps <github@khulnasoft.com>"
+LABEL \
+  "name"="GitHub Pull Request Action" \
+  "homepage"="https://github.com/khulnasoft-lab/action-setup" \
+  "repository"="https://github.com/khulnasoft-lab/action-setup" \
+  "maintainer"="Wei He <github@khulnasoft.com>"
 
-RUN apk add --no-cache git openssh-client && \
-  echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
+  apk add --no-cache git hub bash
 
 ADD *.sh /
 
